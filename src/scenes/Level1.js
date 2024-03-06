@@ -7,17 +7,6 @@ class Level1 extends Phaser.Scene {
 
     }
 
-    preload() {
-        this.load.path = './assets/'
-        this.load.spritesheet('slime', 'img/slime.png', {
-            frameWidth: 16,
-            frameHeight: 16
-        })
-        this.load.image('blueHills', 'img/blueHills.png')
-
-        this.load.image('tilesetImage', 'tiled/ground.png')
-        this.load.tilemapTiledJSON('tilemapJSON', 'tiled/PlatformTest.json')
-    }
 
     create() {
         this.blueHillsLeft = this.add.tileSprite(0, 0, 960, 640, 'blueHills').setOrigin(0, 0).setAlpha(0.3);
@@ -26,19 +15,8 @@ class Level1 extends Phaser.Scene {
         const map = this.add.tilemap('tilemapJSON')
         const tileset = map.addTilesetImage('tileset', 'tilesetImage')
         const terrainLayer = map.createLayer('platforms', tileset, 0, 0)
-
-        // slime animation
-        this.anims.create({
-            key: 'jiggle',
-            frameRate: 8,
-            repeat: -1,
-            frames: this.anims.generateFrameNumbers( 'slime', {
-                start: 0,
-                end: 1
-            })
-        })
         
-    
+
 
         terrainLayer.setCollisionByProperty({collides: true})
 

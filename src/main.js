@@ -16,13 +16,16 @@ let config = {
         }
     },
     zoom: 1,
-    scene: [ Level1 ]
+    scene: [ Menu, Credits, Level1 ]
 }
 
 const game = new Phaser.Game(config)
 
-let cursors
+let cursors, menuConfig
+
+let borderUISize = game.config.height / 15
+let borderPadding = borderUISize / 3
 
 // // globals
-// const centerX = game.config.width / 2
-// const centerY = game.config.height / 2
+const centerX = game.config.width / 2
+const centerY = game.config.height / 2
