@@ -16,6 +16,7 @@ class Menu extends Phaser.Scene {
         this.load.tilemapTiledJSON('tilemapJSON', 'tiled/PlatformTest.json')
         this.load.image('button', 'img/button.avif');
         this.load.bitmapFont('gem_font', 'font/gem.png', 'font/gem.xml')
+        this.load.image('enemy', 'img/MainCharacter.png')
     }
 
 
@@ -35,7 +36,7 @@ class Menu extends Phaser.Scene {
             this.scene.start('creditScene');
         });
 
-        // slime animation
+        // slime animation I get a warning saying this is already created look to fix it if time
         this.anims.create({
             key: 'jiggle',
             frameRate: 8,
@@ -45,22 +46,6 @@ class Menu extends Phaser.Scene {
                 end: 1
             })
         })
-
-        menuConfig = {
-            fontFamily: 'Courier',
-            fontSize: '28px',
-            backgroundColor: '#F3B141',
-            color: '#843605',
-            align: 'right',
-            padding: {
-              top: 5,
-              bottom: 5,
-            },
-            fixedWidth: 0
-        }
-        game.settings = {
-          mouseEnabled: false
-        }
 
 
     }

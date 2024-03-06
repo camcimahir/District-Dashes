@@ -29,22 +29,6 @@ class Credits extends Phaser.Scene {
             this.scene.start('menuScene');
         });
 
-
-        menuConfig = {
-            fontFamily: 'Courier',
-            fontSize: '28px',
-            backgroundColor: '#F3B141',
-            color: '#843605',
-            align: 'right',
-            padding: {
-              top: 5,
-              bottom: 5,
-            },
-            fixedWidth: 0
-        }
-        game.settings = {
-          mouseEnabled: false
-        }
       
 
     }

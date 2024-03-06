@@ -24,17 +24,27 @@ class Level1 extends Phaser.Scene {
 
 
         const slimeSpawn = map.findObject('Spawns',(obj) => obj.name === 'slimeSpawn')
+        const enemySpawn = map.findObject('enemySpawns', (obj) => obj.name === 'enemySpawn')
 
         cursors = this.input.keyboard.createCursorKeys()
 
         // add slime
         this.slime = new Bunny(this, slimeSpawn.x, slimeSpawn.y, 'slime', 1)
+        this.enemy1 = new Enemy1(this, enemySpawn.x, enemySpawn.y, 'enemy')
     
         this.slime.body.setCollideWorldBounds(true)
+        this.enemy1.body.setCollideWorldBounds(true)
         this.cameras.main.setBounds(0,0, map.widthInPixels*2, map.heightInPixels)
         this.cameras.main.startFollow(this.slime, true, 0.25, 0.25)
 
         this.physics.add.collider(this.slime, terrainLayer)
+        this.physics.add.collider(this.enemy1, terrainLayer)
+        
+        //enemy collision
+        this.physics.add.overlap(this.slime, this.enemy1, () => {
+            this.scene.start('gameOverScene');
+        });
+
         this.slime.setScale(4)
         this.slime.setSize(10, 10)
 
@@ -47,6 +57,7 @@ class Level1 extends Phaser.Scene {
 
 
         this.slime.update()
+        this.enemy1.update()
     }
 
 }
