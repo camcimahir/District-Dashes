@@ -17,6 +17,7 @@ class Menu extends Phaser.Scene {
         this.load.image('button', 'img/button.avif');
         this.load.bitmapFont('gem_font', 'font/gem.png', 'font/gem.xml')
         this.load.image('enemy', 'img/MainCharacter.png')
+        this.load.image('weasel', 'img/weasel.png')
     }
 
 

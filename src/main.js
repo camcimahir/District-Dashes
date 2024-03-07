@@ -21,7 +21,7 @@ let config = {
 
 const game = new Phaser.Game(config)
 
-let cursors, menuConfig
+let cursors, menuConfig, inputString, inputKeys
 
 let borderUISize = game.config.height / 15
 let borderPadding = borderUISize / 3
