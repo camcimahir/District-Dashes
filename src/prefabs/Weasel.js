@@ -11,20 +11,38 @@ class Weasel extends Phaser.GameObjects.Sprite {
         console.log("Letter combination:", this.letterCombination);
         
         // Display letters at the top of the weasel
-        this.letterText = scene.add.text(x - 10, y - 50, this.letterCombination, { fontFamily: 'Arial', fontSize: 24, color: '#ffffff' }).setOrigin(0.5);
-        
+        this.guessText = scene.add.text(x - 10, y - 90, inputString, { fontFamily: 'Arial', fontSize: 24, color: '#ffffff' }).setOrigin(0.5);
+        this.letterText = scene.add.text(x - 10, y - 70, this.letterCombination, { fontFamily: 'Arial', fontSize: 24, color: '#ffffff' }).setOrigin(0.5);
+    
+
+        // Store index of current letter to check
+        this.bool = true;
+
+
     }
+    
 
     update(){
 
         if (inputString == this.letterCombination){
-            this.destroy()
-            this.letterText.destroy()
-            return;
+            this.scene.time.delayedCall(500, () => {
+                this.destroy();
+                this.letterText.destroy();
+                this.guessText.destroy();
+            });
         }
 
+        this.guessText.setText(inputString);
 
         this.body.gravity.y = 500;
+
+        //console.log(this.letterCombination[0, inputString.length])
+
+
+        this.bool = this.checkLetter()
+        if (!(this.bool)){
+            inputString = ""
+        }
 
     }
 
@@ -35,6 +53,15 @@ class Weasel extends Phaser.GameObjects.Sprite {
             result += characters.charAt(Math.floor(Math.random() * characters.length));
         }
         return result;
+    }
+
+    checkLetter() {
+        if (inputString === this.letterCombination.slice(0, inputString.length)) {
+            //this.guessText.setStyle({ fill: '#00ff00' }); // Turn letter green
+            return true;
+        } else {
+            return false;
+        }
     }
 
 

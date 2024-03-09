@@ -14,12 +14,13 @@ class Level1 extends Phaser.Scene {
         //this.blueHillsRight = this.add.tileSprite(960, 0, 960*2, 640, 'blueHills').setOrigin(0, 0).setAlpha(0.3);
         //this.blueHills = this.add.tileSprite(0, 0, 960, 640, 'blueHills').setOrigin(0, 0).setAlpha(0.3)
         const map = this.add.tilemap('tilemapJSON')
-        //const groundTileset = map.addTilesetImage('ground', 'grassTiles')
-        const buildingTileset = map.addTilesetImage('buildings','buildingTiles')
-        //const terrainLayer = map.createLayer('platforms', groundTileset, 0, 0)
+        const groundTileset = map.addTilesetImage('grass', 'grass')
+        const buildingTileset = map.addTilesetImage('houses','houses')
+        const terrainLayer = map.createLayer('platforms', groundTileset, 0, 0)
         const RatCollide = map.createLayer('RatCollides', buildingTileset, 0, 0)
+        const houses = map.createLayer('houses', buildingTileset, 0, 0)
         
-        //terrainLayer.setCollisionByProperty({collides: true})
+        terrainLayer.setCollisionByProperty({collides: true})
         RatCollide.setCollisionByProperty({collides: true})
 
         this.physics.world.setBounds(0,0, map.widthInPixels, map.heightInPixels)
@@ -35,20 +36,19 @@ class Level1 extends Phaser.Scene {
         
         this.slime.body.setCollideWorldBounds(true)
         this.cameras.main.setBounds(0,0, map.widthInPixels, map.heightInPixels)
-        this.cameras.main.startFollow(this.slime, true, 0.25, 0.25)
+        this.cameras.main.startFollow(this.slime, true, 0.05,0.05 )
 
         this.physics.add.collider(this.slime, terrainLayer)
-        this.physics.add.collider(this.slime, RatCollide)
+        //this.physics.add.collider(this.slime, RatCollide)
     
-        this.slime.setScale(4)
-        this.slime.setSize(10, 10)
+        this.slime.setSize(100, 100)
         this.slime.play('jiggle')
 
         this.rats = [];
         const numberOfRats = 5;
         for (let i = 0; i < numberOfRats; i++) {
 
-                const enemy = new Rats(this, enemySpawn.x - 165*i, enemySpawn.y, 'enemy', 0 , enemySpawn.x ).setScale(0.5);
+                const enemy = new Rats(this, enemySpawn.x - 150*i, enemySpawn.y, 'enemy', 0 , enemySpawn.x ).setScale();
                 
                 enemy.body.setCollideWorldBounds(true);
                 this.physics.add.collider(enemy, terrainLayer);
@@ -63,15 +63,16 @@ class Level1 extends Phaser.Scene {
         });
 
         inputKeys = this.input.keyboard.addKeys('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+        inputString = ""
 
         this.weasel = new Weasel(this, weaselSpawn.x, weaselSpawn.y, 'weasel', 0).setScale(0.2)
         this.weasel.body.setOffset(100, 0)
         this.weasel.body.setCollideWorldBounds(true);
         this.physics.add.collider(this.weasel, terrainLayer);
-        this.physics.add.collider(this.weasel, RatCollide);
+        //this.physics.add.collider(this.weasel, RatCollide);
 
 
-        inputString = ""
+
 
         this.input.keyboard.on('keydown', function(event) {
             if ((event.keyCode >= 65 && event.keyCode <= 90) || (event.key >= 'a' && event.key <= 'z')) {

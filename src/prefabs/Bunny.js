@@ -6,7 +6,7 @@ class Bunny extends Phaser.GameObjects.Sprite {
         scene.physics.add.existing(this)
 
         this.body.setOffset(3, 3)
-        this.body.setSize(10, 10)
+        this.body.setSize(22, 62)
 
         
 
@@ -25,7 +25,7 @@ class Bunny extends Phaser.GameObjects.Sprite {
 
         // Jumping
         if (cursors.up.isDown && this.body.onFloor()) {
-            this.body.setVelocityY(-400); //jumping amount
+            this.body.setVelocityY(-300); //jumping amount
         }
 
         // gravity
