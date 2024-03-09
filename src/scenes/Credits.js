@@ -13,18 +13,18 @@ class Credits extends Phaser.Scene {
 
     create(){
 
-        this.add.bitmapText(centerX, centerY - 128, 'gem_font', 'CREDITS', 72).setOrigin(0.5)
-        this.add.bitmapText(centerX, centerY - 64, 'gem_font', 'Temporary Font - Nathan Altice  ', 32).setOrigin(0.5)
-        this.add.bitmapText(centerX, centerY, 'gem_font', ' right for menu, left for play ', 32).setOrigin(0.5)
+        this.add.bitmapText(centerX, centerY - 64, 'gem_font', 'CREDITS', 24).setOrigin(0.5)
+        this.add.bitmapText(centerX, centerY - 32, 'gem_font', 'Temporary Font - Nathan Altice  ', 12).setOrigin(0.5)
+        this.add.bitmapText(centerX, centerY, 'gem_font', ' right for menu, left for play ', 12).setOrigin(0.5)
 
 
         // Add button
-        const buttonLevel1 = this.add.image(centerX - 64, centerY + 128, 'button').setInteractive().setScale(0.15);
+        const buttonLevel1 = this.add.image(centerX - 48, centerY + 64, 'button').setInteractive().setScale(0.05);
         buttonLevel1.on('pointerdown', () => {
             this.scene.start('Level1');
         });
 
-        const buttonCredits = this.add.image(centerX + 64, centerY + 128, 'button').setInteractive().setScale(0.15);
+        const buttonCredits = this.add.image(centerX + 48, centerY + 64, 'button').setInteractive().setScale(0.05);
         buttonCredits.on('pointerdown', () => {
             this.scene.start('menuScene');
         });

@@ -10,15 +10,15 @@ class Level1 extends Phaser.Scene {
 
 
     create() {
-        this.blueHillsLeft = this.add.tileSprite(0, 0, 960, 640, 'blueHills').setOrigin(0, 0).setAlpha(0.3);
-        this.blueHillsRight = this.add.tileSprite(960, 0, 960*2, 640, 'blueHills').setOrigin(0, 0).setAlpha(0.3);
+        //this.blueHillsLeft = this.add.tileSprite(0, 0, 960, 640, 'blueHills').setOrigin(0, 0).setAlpha(0.3);
+        //this.blueHillsRight = this.add.tileSprite(960, 0, 960*2, 640, 'blueHills').setOrigin(0, 0).setAlpha(0.3);
         //this.blueHills = this.add.tileSprite(0, 0, 960, 640, 'blueHills').setOrigin(0, 0).setAlpha(0.3)
         const map = this.add.tilemap('tilemapJSON')
-        const tileset = map.addTilesetImage('tileset', 'tilesetImage')
-        const terrainLayer = map.createLayer('platforms', tileset, 0, 0)
-        const RatCollide = map.createLayer('RatCollides', tileset, 0, 0)
+        const groundTileset = map.addTilesetImage('ground', 'grassTiles')
+        const buildingTileset = map.addTilesetImage('buildings','buildingTiles')
+        const terrainLayer = map.createLayer('platforms', groundTileset, 0, 0)
+        const RatCollide = map.createLayer('RatCollides', buildingTileset, 0, 0)
         
-
         terrainLayer.setCollisionByProperty({collides: true})
         RatCollide.setCollisionByProperty({collides: true})
 
@@ -31,7 +31,7 @@ class Level1 extends Phaser.Scene {
         cursors = this.input.keyboard.createCursorKeys()
 
         // add slime
-        this.slime = new Bunny(this, slimeSpawn.x, slimeSpawn.y, 'slime', 1)
+        this.slime = new Bunny(this, slimeSpawn.x, slimeSpawn.y, 'slime', 5)
         
         this.slime.body.setCollideWorldBounds(true)
         this.cameras.main.setBounds(0,0, map.widthInPixels, map.heightInPixels)

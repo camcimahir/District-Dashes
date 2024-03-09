@@ -6,15 +6,16 @@ class Menu extends Phaser.Scene {
     
     preload() {
         this.load.path = './assets/'
-        this.load.spritesheet('slime', 'img/slime.png', {
-            frameWidth: 16,
-            frameHeight: 16
+        this.load.spritesheet('slime', 'img/judy-standing.png', {
+            frameWidth: 64,
+            frameHeight: 64
         })
-        this.load.image('blueHills', 'img/blueHills.png')
+        //this.load.image('blueHills', 'img/blueHills.png')
 
-        this.load.image('tilesetImage', 'tiled/ground.png')
+        this.load.image('grassTiles', 'tiled/GrassTiles.png')
+        this.load.image('buildings', 'img/scene-one-pt-one-buildings.png')
         this.load.tilemapTiledJSON('tilemapJSON', 'tiled/PlatformTest.json')
-        this.load.image('button', 'img/button.avif');
+        this.load.image('button', 'img/button.avif')
         this.load.bitmapFont('gem_font', 'font/gem.png', 'font/gem.xml')
         this.load.image('enemy', 'img/MainCharacter.png')
         this.load.image('weasel', 'img/weasel.png')
@@ -23,16 +24,16 @@ class Menu extends Phaser.Scene {
 
     create(){
 
-        this.add.bitmapText(centerX, centerY - 64, 'gem_font', 'DISTRICT DASHES', 72).setOrigin(0.5)
-        this.add.bitmapText(centerX, centerY, 'gem_font', 'Press the right button fr credits and left to play  ', 32).setOrigin(0.5)
+        this.add.bitmapText(centerX, centerY - 32, 'gem_font', 'DISTRICT DASHES', 24).setOrigin(0.5)
+        this.add.bitmapText(centerX, centerY, 'gem_font', 'Press the right button fr credits and left to play  ', 12).setOrigin(0.5)
 
         // Add button
-        const buttonLevel1 = this.add.image(centerX - 64, centerY + 128, 'button').setInteractive().setScale(0.15);
+        const buttonLevel1 = this.add.image(centerX - 48, centerY + 64, 'button').setInteractive().setScale(0.05);
         buttonLevel1.on('pointerdown', () => {
             this.scene.start('Level1');
         });
 
-        const buttonCredits = this.add.image(centerX + 64, centerY + 128, 'button').setInteractive().setScale(0.15);
+        const buttonCredits = this.add.image(centerX + 48, centerY + 64, 'button').setInteractive().setScale(0.05);
         buttonCredits.on('pointerdown', () => {
             this.scene.start('creditScene');
         });
@@ -40,11 +41,11 @@ class Menu extends Phaser.Scene {
         // slime animation I get a warning saying this is already created look to fix it if time
         this.anims.create({
             key: 'jiggle',
-            frameRate: 8,
+            frameRate: 4,
             repeat: -1,
             frames: this.anims.generateFrameNumbers( 'slime', {
                 start: 0,
-                end: 1
+                end: 5
             })
         })
 

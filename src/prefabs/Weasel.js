@@ -29,7 +29,7 @@ class Weasel extends Phaser.GameObjects.Sprite {
     }
 
     generateRandomLetters(length) {
-        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const characters = 'abcdefghijklmnopqrstuvwxyz';
         let result = '';
         for (let i = 0; i < length; i++) {
             result += characters.charAt(Math.floor(Math.random() * characters.length));

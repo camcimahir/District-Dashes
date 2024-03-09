@@ -7,16 +7,16 @@ let config = {
     render: {
         pixelArt: true
     },
-    width: 960,
-    height: 640,
+    width: 360,
+    height: 240,
     physics: {
         default: "arcade",
         arcade: {
             debug: true
         }
     },
-    zoom: 1,
-    scene: [ Menu, Credits, Level1, GameOver ]
+    zoom: 2.5,
+    scene: [ Menu, Credits, Level1, GameOver ],
 }
 
 const game = new Phaser.Game(config)

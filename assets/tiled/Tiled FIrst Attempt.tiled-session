@@ -3,39 +3,55 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "PlatformTest.json",
+    "activeFile": "PlatformTest.tmj",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
+        "": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "PlatformTest.json": {
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 0.75,
-            "selectedLayer": 1,
+            "scale": 0.25,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 1362.6666666666665,
-                "y": 819.3333333333333
+                "x": 1396,
+                "y": 362
             }
+        },
+        "PlatformTest.json#grass": {
+            "scaleInDock": 1
         },
         "PlatformTest.json#ground": {
             "scaleInDock": 0.5
+        },
+        "PlatformTest.json#houses": {
+            "scaleInDock": 1
         },
         "PlatformTest.json#tileset": {
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "PlatformTest.tmj": {
-            "scale": 0.25,
-            "selectedLayer": 0,
+            "scale": 1,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 1816,
-                "y": 1502
+                "x": 520,
+                "y": 255.5
             }
+        },
+        "PlatformTest.tmj#grass": {
+            "scaleInDock": 1
         },
         "PlatformTest.tmj#ground": {
             "scaleInDock": 1
+        },
+        "PlatformTest.tmj#houses": {
+            "scaleInDock": 1.5
         },
         "PlatformTest.tmj#tileset": {
             "scaleInDock": 1
@@ -44,11 +60,17 @@
             "scale": 0.25,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 280,
-                "y": 1242
+                "x": 276,
+                "y": 1222
             }
         },
+        "PlatformTest.tmx#grass": {
+            "scaleInDock": 1
+        },
         "PlatformTest.tmx#ground": {
+            "scaleInDock": 1
+        },
+        "PlatformTest.tmx#houses": {
             "scaleInDock": 1
         },
         "PlatformTest.tmx#tileset": {
@@ -56,18 +78,27 @@
         }
     },
     "last.exportedFilePath": "C:/Users/camci/cmpm120 projects/District Dashes/assets/tiled",
+    "last.externalTilesetPath": "C:/Users/camci/cmpm120 projects/District Dashes/assets/tiled",
+    "last.imagePath": "C:/Users/camci/cmpm120 projects/District Dashes/assets/tiled",
     "map.height": 30,
     "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
     "map.lastUsedFormat": "json",
     "map.width": 60,
     "openFiles": [
-        "PlatformTest.json"
+        "PlatformTest.tmj"
     ],
     "project": "",
     "property.type": "bool",
     "recentFiles": [
         "PlatformTest.json",
-        "PlatformTest.tmj",
-        "PlatformTest.tmx"
-    ]
+        "PlatformTest.tmx",
+        "PlatformTest.tmj"
+    ],
+    "tileset.embedInMap": true,
+    "tileset.tileSize": {
+        "height": 8,
+        "width": 8
+    },
+    "tileset.transparentColor": "#000000",
+    "tileset.useTransparentColor": true
 }
