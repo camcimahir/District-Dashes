@@ -14,12 +14,12 @@ class Level1 extends Phaser.Scene {
         //this.blueHillsRight = this.add.tileSprite(960, 0, 960*2, 640, 'blueHills').setOrigin(0, 0).setAlpha(0.3);
         //this.blueHills = this.add.tileSprite(0, 0, 960, 640, 'blueHills').setOrigin(0, 0).setAlpha(0.3)
         const map = this.add.tilemap('tilemapJSON')
-        const groundTileset = map.addTilesetImage('ground', 'grassTiles')
+        //const groundTileset = map.addTilesetImage('ground', 'grassTiles')
         const buildingTileset = map.addTilesetImage('buildings','buildingTiles')
-        const terrainLayer = map.createLayer('platforms', groundTileset, 0, 0)
+        //const terrainLayer = map.createLayer('platforms', groundTileset, 0, 0)
         const RatCollide = map.createLayer('RatCollides', buildingTileset, 0, 0)
         
-        terrainLayer.setCollisionByProperty({collides: true})
+        //terrainLayer.setCollisionByProperty({collides: true})
         RatCollide.setCollisionByProperty({collides: true})
 
         this.physics.world.setBounds(0,0, map.widthInPixels, map.heightInPixels)

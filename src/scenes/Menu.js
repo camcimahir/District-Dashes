@@ -13,7 +13,7 @@ class Menu extends Phaser.Scene {
         //this.load.image('blueHills', 'img/blueHills.png')
 
         this.load.image('grassTiles', 'tiled/GrassTiles.png')
-        this.load.image('buildings', 'img/scene-one-pt-one-buildings.png')
+        this.load.image('buildingTiles', 'img/scene-one-pt-one-buildings.png')
         this.load.tilemapTiledJSON('tilemapJSON', 'tiled/PlatformTest.json')
         this.load.image('button', 'img/button.avif')
         this.load.bitmapFont('gem_font', 'font/gem.png', 'font/gem.xml')
