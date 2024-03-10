@@ -16,11 +16,11 @@
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 1.5,
-            "selectedLayer": 0,
+            "scale": 1,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 542,
-                "y": 199.66666666666663
+                "x": 1110,
+                "y": 264.5
             }
         },
         "PlatformTest.json#grass": {
