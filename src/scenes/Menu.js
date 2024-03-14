@@ -12,12 +12,13 @@ class Menu extends Phaser.Scene {
         })
         //this.load.image('blueHills', 'img/blueHills.png')
 
-        this.load.image('grass', 'tiled/GrassTiles.png')
-        this.load.image('houses', 'img/scene-one-pt-one-buildings.png')
+        this.load.image('ground', 'img/ground.png')
+        this.load.image('train', 'img/scene-one-train.png')
+        this.load.image('buildings', 'img/scene-one-tileset.png')
         this.load.tilemapTiledJSON('tilemapJSON', 'tiled/PlatformTest.json')
         this.load.image('button', 'img/button.avif')
         this.load.bitmapFont('gem_font', 'font/gem.png', 'font/gem.xml')
-        this.load.image('enemy', 'img/rat-version-one.png')
+        this.load.image('rat', 'img/rat-version-one.png')
         this.load.image('weasel', 'img/weasel.png')
 
         this.load.audio('background', 'sound/background.mp3')

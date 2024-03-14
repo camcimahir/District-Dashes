@@ -16,20 +16,23 @@ class Level1 extends Phaser.Scene {
         //this.blueHillsRight = this.add.tileSprite(960, 0, 960*2, 640, 'blueHills').setOrigin(0, 0).setAlpha(0.3);
         //this.blueHills = this.add.tileSprite(0, 0, 960, 640, 'blueHills').setOrigin(0, 0).setAlpha(0.3)
         const map = this.add.tilemap('tilemapJSON')
-        const groundTileset = map.addTilesetImage('grass', 'grass')
-        const buildingTileset = map.addTilesetImage('houses','houses')
+        const groundTileset = map.addTilesetImage('ground', 'ground')
+        const buildingTileset = map.addTilesetImage('objects','buildings')
         const terrainLayer = map.createLayer('platforms', groundTileset, 0, 0)
         const RatCollide = map.createLayer('RatCollides', buildingTileset, 0, 0)
-        const houses = map.createLayer('houses', buildingTileset, 0, 0)
+        const BridgeLayer = map.createLayer('Bridge', buildingTileset, 0, 0)
+        const houseLayer = map.createLayer('houses', buildingTileset, 0, 0)
         
         terrainLayer.setCollisionByProperty({collides: true})
         RatCollide.setCollisionByProperty({collides: true})
+        BridgeLayer.setCollisionByProperty({collides: true})
 
         this.physics.world.setBounds(0,0, map.widthInPixels, map.heightInPixels)
 
         const slimeSpawn = map.findObject('Spawns',(obj) => obj.name === 'slimeSpawn')
         const enemySpawn = map.findObject('enemySpawns', (obj) => obj.name === 'enemySpawn')
         const weaselSpawn = map.findObject('WeaselSpawn',(obj) => obj.name === 'WeaselSpawn')
+        const trainSpawns = map.findObject('trainSpawns', (obj) => obj.name === 'trainSpawns')
 
         cursors = this.input.keyboard.createCursorKeys()
 
@@ -41,22 +44,31 @@ class Level1 extends Phaser.Scene {
         this.cameras.main.startFollow(this.slime, true, 0.05,0.05 )
 
         this.physics.add.collider(this.slime, terrainLayer)
+        this.physics.add.collider(this.slime, BridgeLayer)
         //this.physics.add.collider(this.slime, RatCollide)
     
         this.slime.setSize(100, 100)
         this.slime.play('jiggle')
 
+        this.train = new Train(this, trainSpawns.x, trainSpawns.y, 'train', 0, trainSpawns.x)
+        this.physics.add.collider(this.train, BridgeLayer);
+        this.physics.add.collider(this.train, RatCollide, () => {
+            
+            this.train.resetPosition()
+        });
+        //this.physics.add.collider(rat, RatCollide);
+
         this.rats = [];
         const numberOfRats = 5;
         for (let i = 0; i < numberOfRats; i++) {
 
-                const enemy = new Rats(this, enemySpawn.x - 150*i, enemySpawn.y, 'enemy', 0 , enemySpawn.x ).setScale();
+                const rat = new Rats(this, enemySpawn.x - 150*i, enemySpawn.y, 'rat', 0 , enemySpawn.x ).setScale();
                 
-                enemy.body.setCollideWorldBounds(true);
-                this.physics.add.collider(enemy, terrainLayer);
-                this.physics.add.collider(enemy, RatCollide);
+                rat.body.setCollideWorldBounds(true);
+                this.physics.add.collider(rat, terrainLayer);
+                this.physics.add.collider(rat, RatCollide);
 
-                this.rats.push(enemy)
+                this.rats.push(rat)
 
         }
 
@@ -92,15 +104,15 @@ class Level1 extends Phaser.Scene {
 
     update() {
 
-        console.log(inputString)
 
         this.slime.update();
         if (this.weasel.body){
             this.weasel.update();
         }
-        this.rats.forEach(enemy => {
-            enemy.update();
+        this.rats.forEach(rat => {
+            rat.update();
         });
+        this.train.update()
         
     }
 
