@@ -16,11 +16,11 @@
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 1,
-            "selectedLayer": 5,
+            "scale": 0.75,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 1110,
-                "y": 264.5
+                "x": 421.33333333333326,
+                "y": 39.33333333333326
             }
         },
         "PlatformTest.json#grass": {
@@ -32,6 +32,9 @@
         },
         "PlatformTest.json#houses": {
             "scaleInDock": 1
+        },
+        "PlatformTest.json#objects": {
+            "scaleInDock": 1.5
         },
         "PlatformTest.json#tileset": {
             "scaleInDock": 1,
@@ -83,7 +86,7 @@
         }
     },
     "last.exportedFilePath": "C:/Users/camci/cmpm120 projects/District Dashes/assets/tiled",
-    "last.externalTilesetPath": "C:/Users/camci/cmpm120 projects/District Dashes/assets/tiled",
+    "last.externalTilesetPath": "C:/Users/camci/cmpm120 projects/District Dashes/assets/img",
     "last.imagePath": "C:/Users/camci/cmpm120 projects/District Dashes/assets/img",
     "map.height": 30,
     "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
@@ -101,6 +104,7 @@
         "PlatformTest.tmj"
     ],
     "tileset.embedInMap": true,
+    "tileset.lastUsedFilter": "All Files (*)",
     "tileset.tileSize": {
         "height": 8,
         "width": 8
