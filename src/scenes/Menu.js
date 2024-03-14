@@ -19,6 +19,9 @@ class Menu extends Phaser.Scene {
         this.load.bitmapFont('gem_font', 'font/gem.png', 'font/gem.xml')
         this.load.image('enemy', 'img/rat-version-one.png')
         this.load.image('weasel', 'img/weasel.png')
+
+        this.load.audio('background', 'sound/background.mp3')
+        this.load.audio('weasel-lose', 'sound/weasel-lose-darn.mp3')
     }
 
 
