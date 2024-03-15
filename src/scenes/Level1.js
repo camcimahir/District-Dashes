@@ -118,7 +118,6 @@ class Level1 extends Phaser.Scene {
 
     update() {
 
-
         this.bunny.update();
         if (this.weasel.body){
             this.weasel.update();
