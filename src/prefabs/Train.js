@@ -19,14 +19,11 @@ class Train extends Phaser.GameObjects.Sprite {
 
     update(){
 
-        this.body.gravity.y = 500;
-
     }
 
     resetPosition() {
         this.setPosition(this.enemySpawn, this.y);
         this.body.setVelocityX(-100);
-        console.log("hello")
     }
 
 

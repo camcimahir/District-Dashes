@@ -27,7 +27,10 @@ class Rats extends Phaser.GameObjects.Sprite {
     }
 
     resetPosition() {
-        this.setPosition(this.enemySpawn, this.y);
+        const randomOffsetX = Phaser.Math.Between(-150, 150);
+        const newX = this.enemySpawn + randomOffsetX;
+        
+        this.setPosition(newX, this.y);
         this.body.setVelocityX(-100);
     }
 

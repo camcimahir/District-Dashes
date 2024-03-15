@@ -6,7 +6,7 @@ class Menu extends Phaser.Scene {
     
     preload() {
         this.load.path = './assets/'
-        this.load.spritesheet('slime', 'img/judy-standing.png', {
+        this.load.spritesheet('judy', 'img/judy-standing.png', {
             frameWidth: 64,
             frameHeight: 64
         })
@@ -42,12 +42,12 @@ class Menu extends Phaser.Scene {
             this.scene.start('creditScene');
         });
 
-        // slime animation I get a warning saying this is already created look to fix it if time
+        // bunny  animation I get a warning saying this is already created look to fix it if time
         this.anims.create({
-            key: 'jiggle',
+            key: 'idle',
             frameRate: 4,
             repeat: -1,
-            frames: this.anims.generateFrameNumbers( 'slime', {
+            frames: this.anims.generateFrameNumbers( 'judy', {
                 start: 0,
                 end: 5
             })

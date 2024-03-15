@@ -10,17 +10,17 @@
     "fileStates": {
         "": {
             "scaleInDock": 2,
-            "scaleInEditor": 1
+            "scaleInEditor": 4
         },
         "PlatformTest.json": {
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 0.75,
-            "selectedLayer": 4,
+            "scale": 3,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 421.33333333333326,
-                "y": 39.33333333333326
+                "x": 1357.5,
+                "y": 379.16666666666663
             }
         },
         "PlatformTest.json#grass": {
@@ -34,7 +34,7 @@
             "scaleInDock": 1
         },
         "PlatformTest.json#objects": {
-            "scaleInDock": 1.5
+            "scaleInDock": 0.5
         },
         "PlatformTest.json#tileset": {
             "scaleInDock": 1,
