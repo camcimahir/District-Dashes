@@ -40,31 +40,34 @@ class Level1 extends Phaser.Scene {
 
 
         //spawn locations
-        const slimeSpawn = map.findObject('Spawns',(obj) => obj.name === 'slimeSpawn')
+        const bunnySpawn = map.findObject('Spawns',(obj) => obj.name === 'bunnySpawn')
         const enemySpawn = map.findObject('enemySpawns', (obj) => obj.name === 'enemySpawn')
         const weaselSpawn = map.findObject('WeaselSpawn',(obj) => obj.name === 'WeaselSpawn')
         const trainSpawns = map.findObject('trainSpawns', (obj) => obj.name === 'trainSpawns')
 
-        // add slime
-        this.slime = new Bunny(this, slimeSpawn.x, slimeSpawn.y, 'judy', 5)
-        this.slime.setSize(100, 100)
-        this.slime.play('idle')
-        this.slime.body.setCollideWorldBounds(true)
+        // add bunny
+        this.bunny = new Bunny(this, bunnySpawn.x, bunnySpawn.y, 'judy', 5)
+        this.bunny.setSize(100, 100)
+        this.bunny.play('idle')
+        this.bunny.body.setCollideWorldBounds(true)
 
         //fix camera to bunny
         this.cameras.main.setBounds(0,0, map.widthInPixels, map.heightInPixels)
-        this.cameras.main.startFollow(this.slime, true, 0.05,0.05 )
+        this.cameras.main.startFollow(this.bunny, true, 0.05,0.05 )
 
         //bunny collissions
-        this.physics.add.collider(this.slime, terrainLayer)
-        this.physics.add.collider(this.slime, this.BridgeLayer)
-        this.physics.add.collider(this.slime, DoorLayer)
+        this.physics.add.collider(this.bunny, terrainLayer)
+        this.physics.add.collider(this.bunny, this.BridgeLayer)
+        this.physics.add.collider(this.bunny, DoorLayer)
 
          //train stuff
         this.train = new Train(this, trainSpawns.x, 395, 'train', 0, trainSpawns.x)
         this.physics.add.collider(this.train, this.BridgeLayer);
+        this.physics.add.overlap(this.bunny, this.train, () => {
+            console.log("hello")
+            this.bunny.handleBridgeInteraction()
+        });
         this.physics.add.collider(this.train, RatCollide, () => {
-            
             this.train.resetPosition()
         });
 
@@ -83,7 +86,7 @@ class Level1 extends Phaser.Scene {
             this.rats.push(rat)
 
         }
-        this.physics.add.overlap(this.slime, this.rats, () => {
+        this.physics.add.overlap(this.bunny, this.rats, () => {
             this.gameOver()
         });
 
@@ -96,7 +99,7 @@ class Level1 extends Phaser.Scene {
         this.weasel.body.setOffset(100, 0)
         this.weasel.body.setCollideWorldBounds(true);
         this.physics.add.collider(this.weasel, terrainLayer);
-        this.physics.add.overlap(this.slime, this.weasel, () => {
+        this.physics.add.overlap(this.bunny, this.weasel, () => {
             this.gameOver()
         });
 
@@ -116,7 +119,7 @@ class Level1 extends Phaser.Scene {
     update() {
 
 
-        this.slime.update();
+        this.bunny.update();
         if (this.weasel.body){
             this.weasel.update();
         }

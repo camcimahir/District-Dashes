@@ -16,7 +16,9 @@ class Bunny extends Phaser.GameObjects.Sprite {
     }
 
     update(){
-        this.handleBridgeInteraction();
+        if (cursors.down.isDown ) {
+            this.handleBridgeInteraction()
+        }
 
         //movement
         if (cursors.left.isDown) {
@@ -41,23 +43,21 @@ class Bunny extends Phaser.GameObjects.Sprite {
     }
 
     handleBridgeInteraction() {
-        const onBridge = this.scene.physics.overlap(this, this.scene.BridgeLayer);
-        console.log(onBridge)
-        if (cursors.down.isDown && onBridge) {
-            this.scene.physics.world.removeCollider(collider1);
+        
+        this.scene.physics.world.removeCollider(collider1);
+        this.scene.BridgeLayer.forEachTile(tile => {
+            if (tile.properties["OneWay"]) {
+                tile.setCollision(false, false, false, false);
+            }
+            });
+        this.scene.time.delayedCall(500, () => {
             this.scene.BridgeLayer.forEachTile(tile => {
                 if (tile.properties["OneWay"]) {
-                  tile.setCollision(false, false, false, false);
+                    tile.setCollision(false, false, true, false);
                 }
-             });
-            this.scene.time.delayedCall(500, () => {
-                this.scene.BridgeLayer.forEachTile(tile => {
-                    if (tile.properties["OneWay"]) {
-                      tile.setCollision(false, false, true, false);
-                    }
-                 });
-            });
-        }
+                });
+        });
+        
     }
 
 }
