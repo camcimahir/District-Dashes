@@ -74,7 +74,7 @@ class Level1 extends Phaser.Scene {
 
         //rat stuff
         this.rats = [];
-        const numberOfRats = 5;
+        const numberOfRats = 8;
         for (let i = 0; i < numberOfRats; i++) {
 
             const rat = new Rats(this, enemySpawn.x - 150*i, enemySpawn.y, 'rat', 0 , enemySpawn.x ).setScale();
