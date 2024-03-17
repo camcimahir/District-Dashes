@@ -11,7 +11,7 @@ class Bunny extends Phaser.GameObjects.Sprite {
         cursors = scene.input.keyboard.createCursorKeys()
 
 
-        
+        this.pushed = false;
 
     }
 
@@ -29,17 +29,19 @@ class Bunny extends Phaser.GameObjects.Sprite {
         }
 
         //movement
-        if (cursors.left.isDown) {
-            this.body.setVelocityX(-160) // Move left
-        } else if (cursors.right.isDown) {
-            this.body.setVelocityX(160); // Move right
-        } else if (cursors){
-            this.body.setVelocityX(0); // if nothing is pressed stops
-        }
+        if (!this.pushed){
+            if (cursors.left.isDown) {
+                this.body.setVelocityX(-160) // Move left
+            } else if (cursors.right.isDown) {
+                this.body.setVelocityX(160); // Move right
+            } else if (cursors){
+                this.body.setVelocityX(0); // if nothing is pressed stops
+            }
 
-        // Jumping
-        if (cursors.up.isDown && this.body.onFloor()) {
-            this.body.setVelocityY(-250); //jumping amount
+            // Jumping
+            if (cursors.up.isDown && this.body.onFloor()) {
+                this.body.setVelocityY(-250); //jumping amount
+            }
         }
 
         // gravity
@@ -66,6 +68,15 @@ class Bunny extends Phaser.GameObjects.Sprite {
                 });
         });
         
+    }
+
+    push(){
+        this.body.setVelocityX(-250);
+        this.pushed = true
+        this.scene.time.delayedCall(750, () => {
+            this.pushed = false
+        })
+
     }
 
 }
