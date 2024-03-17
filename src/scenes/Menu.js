@@ -29,7 +29,7 @@ class Menu extends Phaser.Scene {
     create(){
 
         this.add.bitmapText(centerX, centerY - 32, 'gem_font', 'DISTRICT DASHES', 24).setOrigin(0.5)
-        this.add.bitmapText(centerX, centerY, 'gem_font', 'Press the right button fr credits and left to play  ', 12).setOrigin(0.5)
+        this.add.bitmapText(centerX, centerY, 'gem_font', 'click the right button fr credits and left to play  ', 12).setOrigin(0.5)
 
         // Add button
         const buttonLevel1 = this.add.image(centerX - 48, centerY + 64, 'button').setInteractive().setScale(0.05);

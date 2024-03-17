@@ -61,7 +61,7 @@ class Level1 extends Phaser.Scene {
         this.physics.add.collider(this.bunny, DoorLayer)
 
          //train stuff
-        this.train = new Train(this, trainSpawns.x, 395, 'train', 0, trainSpawns.x)
+        this.train = new Train(this, trainSpawns.x, 355, 'train', 0, trainSpawns.x)
         this.physics.add.collider(this.train, this.BridgeLayer);
         this.physics.add.overlap(this.bunny, this.train, () => {
             console.log("hello")

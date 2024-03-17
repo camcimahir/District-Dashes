@@ -20,6 +20,14 @@ class Bunny extends Phaser.GameObjects.Sprite {
             this.handleBridgeInteraction()
         }
 
+        if (this.body.velocity.x < 0) {
+            // Moving left
+            this.setFlipX(true);
+        } else if (this.body.velocity.x > 0) {
+            // Moving right
+            this.setFlipX(false);
+        }
+
         //movement
         if (cursors.left.isDown) {
             this.body.setVelocityX(-160) // Move left
@@ -31,7 +39,7 @@ class Bunny extends Phaser.GameObjects.Sprite {
 
         // Jumping
         if (cursors.up.isDown && this.body.onFloor()) {
-            this.body.setVelocityY(-300); //jumping amount
+            this.body.setVelocityY(-250); //jumping amount
         }
 
         // gravity

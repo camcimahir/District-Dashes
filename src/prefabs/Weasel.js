@@ -11,8 +11,8 @@ class Weasel extends Phaser.GameObjects.Sprite {
         console.log("Letter combination:", this.letterCombination);
         
         // Display letters at the top of the weasel
-        this.guessText = scene.add.text(x - 10, y - 90, inputString, { fontFamily: 'Arial', fontSize: 24, color: '#ffffff' }).setOrigin(0.5);
-        this.letterText = scene.add.text(x - 10, y - 70, this.letterCombination, { fontFamily: 'Arial', fontSize: 24, color: '#ffffff' }).setOrigin(0.5);
+        this.guessText = scene.add.text(x - 10, y - 60, inputString, { fontFamily: 'Arial', fontSize: 24, color: '#ffffff' }).setOrigin(0.5);
+        this.letterText = scene.add.text(x - 10, y - 40, this.letterCombination, { fontFamily: 'Arial', fontSize: 24, color: '#ffffff' }).setOrigin(0.5);
     
 
         // Store index of current letter to check
@@ -47,7 +47,7 @@ class Weasel extends Phaser.GameObjects.Sprite {
     }
 
     generateRandomLetters(length) {
-        const characters = 'abcdefghijklmnopqrstuvwxyz';
+        const characters = 'qwertyasdfghzxcvb';
         let result = '';
         for (let i = 0; i < length; i++) {
             result += characters.charAt(Math.floor(Math.random() * characters.length));
