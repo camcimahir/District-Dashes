@@ -18,6 +18,7 @@ class Menu extends Phaser.Scene {
         this.load.tilemapTiledJSON('tilemapJSON', 'tiled/PlatformTest.json')
         this.load.image('button', 'img/button.avif')
         this.load.bitmapFont('gem_font', 'font/gem.png', 'font/gem.xml')
+        this.load.bitmapFont('nathanFont', 'font/nathan.png', 'font/nathan.xml' )
         this.load.spritesheet('rat2', 'img/rat-two.png', {
             frameWidth: 24,
             frameHeight: 24
@@ -31,8 +32,8 @@ class Menu extends Phaser.Scene {
 
     create(){
 
-        this.add.bitmapText(centerX, centerY - 32, 'gem_font', 'DISTRICT DASHES', 24).setOrigin(0.5)
-        this.add.bitmapText(centerX, centerY, 'gem_font', 'click the right button fr credits and left to play  ', 12).setOrigin(0.5)
+        this.add.bitmapText(centerX, centerY - 32, 'nathanFont', 'DISTRICT DASHES', 24).setOrigin(0.5)
+        this.add.bitmapText(centerX, centerY, 'nathanFont', 'click the right button fr credits and left to play  ', 12).setOrigin(0.5)
 
         // Add button
         const buttonLevel1 = this.add.image(centerX - 48, centerY + 64, 'button').setInteractive().setScale(0.05);

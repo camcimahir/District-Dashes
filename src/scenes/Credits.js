@@ -13,9 +13,9 @@ class Credits extends Phaser.Scene {
 
     create(){
 
-        this.add.bitmapText(centerX, centerY - 64, 'gem_font', 'CREDITS', 24).setOrigin(0.5)
-        this.add.bitmapText(centerX, centerY - 32, 'gem_font', 'Temporary Font - Nathan Altice  ', 12).setOrigin(0.5)
-        this.add.bitmapText(centerX, centerY, 'gem_font', ' right for menu, left for play ', 12).setOrigin(0.5)
+        this.add.bitmapText(centerX, centerY - 64, 'nathanFont', 'CREDITS', 24).setOrigin(0.5)
+        this.add.bitmapText(centerX, centerY - 32, 'nathanFont', 'Temporary Font - Nathan Altice  ', 12).setOrigin(0.5)
+        this.add.bitmapText(centerX, centerY, 'nathanFont', ' right for menu, left for play ', 12).setOrigin(0.5)
 
 
         // Add button

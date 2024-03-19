@@ -13,8 +13,8 @@ class GameOver extends Phaser.Scene {
 
     create(){
 
-        this.add.bitmapText(centerX, centerY - 64, 'gem_font', 'GAME OVER', 24).setOrigin(0.5)
-        this.add.bitmapText(centerX, centerY - 32, 'gem_font', ' right for menu, left for play again', 12).setOrigin(0.5)
+        this.add.bitmapText(centerX, centerY - 64, 'nathanFont', 'GAME OVER', 24).setOrigin(0.5)
+        this.add.bitmapText(centerX, centerY - 32, 'nathanFont', ' right for menu, left for play again', 12).setOrigin(0.5)
 
 
         // Add button
