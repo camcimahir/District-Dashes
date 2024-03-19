@@ -10,6 +10,10 @@ class Menu extends Phaser.Scene {
             frameWidth: 64,
             frameHeight: 64
         })
+        this.load.spritesheet('judyRunning', 'img/run.png', {
+            frameWidth: 34,
+            frameHeight: 46
+        })
         //this.load.image('blueHills', 'img/blueHills.png')
 
         this.load.image('ground', 'img/ground.png')
