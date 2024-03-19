@@ -136,8 +136,8 @@ class Level1 extends Phaser.Scene {
         inputString = ""
 
         //weasel stuff
-        this.weasel = new Weasel(this, weaselSpawn.x, weaselSpawn.y, 'weasel', 0).setScale(0.2)
-        this.weasel.body.setOffset(100, 0)
+        this.weasel = new Weasel(this, weaselSpawn.x, weaselSpawn.y, 'weasel').setScale(2)
+        //this.weasel.body.setOffset(100, 0)
         this.weasel.body.setCollideWorldBounds(true);
         this.physics.add.collider(this.weasel, terrainLayer);
         this.physics.add.overlap(this.bunny, this.weasel, () => {

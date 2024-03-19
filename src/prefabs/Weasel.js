@@ -4,7 +4,7 @@ class Weasel extends Phaser.GameObjects.Sprite {
 
         scene.add.existing(this)  
         scene.physics.add.existing(this)
-        this.body.setSize(150, 500)
+        //this.body.setSize(150, 500)
         
         // Generate a random letter combination
         this.letterCombination = this.generateRandomLetters(4);
