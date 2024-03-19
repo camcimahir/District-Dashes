@@ -17,6 +17,7 @@ class Level1 extends Phaser.Scene {
         //tilesets
         const groundTileset = map.addTilesetImage('ground', 'ground')
         const buildingTileset = map.addTilesetImage('objects','buildings')
+        const tutorialTileset = map.addTilesetImage('tutorial','tutorial')
 
         //layers
         const terrainLayer = map.createLayer('platforms', groundTileset, 0, 0)
@@ -24,11 +25,13 @@ class Level1 extends Phaser.Scene {
         const DoorLayer = map.createLayer('Door', buildingTileset, 0, 0)
         this.BridgeLayer = map.createLayer('Bridge', buildingTileset, 0, 0)
         const houseLayer = map.createLayer('houses', buildingTileset, 0, 0)
+        const tutorialLayer = map.createLayer('TutorialLayer', tutorialTileset, 0, 0)
         
         //layer collissions
         terrainLayer.setCollisionByProperty({collides: true})
         RatCollide.setCollisionByProperty({collides: true})
         DoorLayer.setCollisionByProperty({collides: true})
+        tutorialLayer.setCollisionByProperty({collides: true})
 
         this.BridgeLayer.forEachTile(tile => {
             if (tile.properties["OneWay"]) {
@@ -44,10 +47,11 @@ class Level1 extends Phaser.Scene {
         const enemySpawn = map.findObject('enemySpawns', (obj) => obj.name === 'enemySpawn')
         const weaselSpawn = map.findObject('WeaselSpawn',(obj) => obj.name === 'WeaselSpawn')
         const trainSpawns = map.findObject('trainSpawns', (obj) => obj.name === 'trainSpawns')
+        const trainerSpawns = map.findObject('trainerSpawns', (obj) => obj.name === 'trainerSpawns')
 
         // add bunny
         this.bunny = new Bunny(this, bunnySpawn.x, bunnySpawn.y, 'bunny', 0)
-        this.bunny.body.setOffset(24, -2)
+        this.bunny.body.setOffset(24, 0)
         this.bunny.play('idle')
         this.bunny.body.setCollideWorldBounds(true)
         this.canLoseLife = true
@@ -62,6 +66,7 @@ class Level1 extends Phaser.Scene {
         this.physics.add.collider(this.bunny, terrainLayer)
         this.physics.add.collider(this.bunny, this.BridgeLayer)
         this.physics.add.collider(this.bunny, DoorLayer)
+        this.physics.add.collider(this.bunny, tutorialLayer)
 
          //train stuff
         this.train = new Train(this, trainSpawns.x, 355, 'train', 0, trainSpawns.x)
@@ -110,6 +115,8 @@ class Level1 extends Phaser.Scene {
             this.bunnyLoseHealthCollide()
             //this.gameOver()
         });
+
+        this.trainer = new Weasel(this, trainerSpawns.x, trainerSpawns.y, 'polarBear', 0)
 
 
         //taking input from the user

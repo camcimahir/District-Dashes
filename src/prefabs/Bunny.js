@@ -6,7 +6,7 @@ class Bunny extends Phaser.GameObjects.Sprite {
         scene.physics.add.existing(this)
 
         // this.body.setOffset(50, 30)
-        this.body.setSize(22, 62)
+        this.body.setSize(22, 58)
 
         cursors = scene.input.keyboard.createCursorKeys()
 

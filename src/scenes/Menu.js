@@ -23,6 +23,7 @@ class Menu extends Phaser.Scene {
         this.load.image('ground', 'img/ground.png')
         this.load.image('train', 'img/scene-one-train.png')
         this.load.image('buildings', 'img/scene-one-tileset.png')
+        this.load.image('tutorial', 'img/tutorial.png')
         this.load.tilemapTiledJSON('tilemapJSON', 'tiled/PlatformTest.json')
         this.load.image('button', 'img/button.avif')
         this.load.bitmapFont('gem_font', 'font/gem.png', 'font/gem.xml')
