@@ -24,6 +24,7 @@ class Menu extends Phaser.Scene {
         this.load.image('train', 'img/scene-one-train.png')
         this.load.image('buildings', 'img/scene-one-tileset.png')
         this.load.image('tutorial', 'img/tutorial.png')
+        this.load.image('polarbear', 'img/polarbear.png')
         this.load.tilemapTiledJSON('tilemapJSON', 'tiled/PlatformTest.json')
         this.load.image('button', 'img/button.avif')
         this.load.bitmapFont('gem_font', 'font/gem.png', 'font/gem.xml')
@@ -60,12 +61,12 @@ class Menu extends Phaser.Scene {
             playing = true
         }
 
-        const animationCompleteHandler = (animation) => {
-            if (animation.key === 'transition') {
-                // Transition animation complete, play run animation
-                this.bunny.play('run');
-            }
-        };
+        // const animationCompleteHandler = (animation) => {
+        //     if (animation.key === 'transition') {
+        //         // Transition animation complete, play run animation
+        //         this.bunny.play('run');
+        //     }
+        // };
 
         // bunny  animation I get a warning saying this is already created look to fix it if time
         this.anims.create({
@@ -83,13 +84,13 @@ class Menu extends Phaser.Scene {
             repeat: -1,
             frames: this.anims.generateFrameNumbers( 'judy', {
                 start: 12,
-                end: 20
+                end: 19
             }),
         })
 
         this.anims.create({
             key: 'transition',
-            frameRate: 7,
+            frameRate: 10,
             repeat: 0,
             frames: this.anims.generateFrameNumbers( 'judy', {
                 start: 8,

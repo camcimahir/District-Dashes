@@ -22,6 +22,7 @@ class Level1 extends Phaser.Scene {
         //layers
         const terrainLayer = map.createLayer('platforms', groundTileset, 0, 0)
         const RatCollide = map.createLayer('RatCollides', buildingTileset, 0, 0)
+        const belowDoorLayer = map.createLayer('belowDoor', buildingTileset, 0, 0)
         const DoorLayer = map.createLayer('Door', buildingTileset, 0, 0)
         this.BridgeLayer = map.createLayer('Bridge', buildingTileset, 0, 0)
         const houseLayer = map.createLayer('houses', buildingTileset, 0, 0)
@@ -47,7 +48,31 @@ class Level1 extends Phaser.Scene {
         const enemySpawn = map.findObject('enemySpawns', (obj) => obj.name === 'enemySpawn')
         const weaselSpawn = map.findObject('WeaselSpawn',(obj) => obj.name === 'WeaselSpawn')
         const trainSpawns = map.findObject('trainSpawns', (obj) => obj.name === 'trainSpawns')
-        const trainerSpawns = map.findObject('trainerSpawns', (obj) => obj.name === 'trainerSpawns')
+        const trainerSpawns = map.findObject('trainerSpawn', (obj) => obj.name === 'trainerSpawn')
+
+        const spawnText1 = map.findObject('Spawns',(obj) => obj.name === 'text1')
+        const spawnText2 = map.findObject('Spawns',(obj) => obj.name === 'text2')
+        const spawnText3 = map.findObject('Spawns',(obj) => obj.name === 'text3')
+
+        const textObject1 = this.add.text(spawnText1.x + 100, spawnText1.y, 'Pass all the obstacles to become a police', { 
+            fontFamily: 'Arial',
+            fontSize: 12,
+            color: '#ffffff'
+        });
+        const textObject2 = this.add.text(spawnText2.x + 100, spawnText2.y, 'Type the code on top of the enemy to catch them', { 
+            fontFamily: 'Arial',
+            fontSize: 12,
+            color: '#ffffff'
+        });
+        const textObject3 = this.add.text(spawnText3.x + 100, spawnText3.y, 'go to rat city and catch the thief.\n be careful not to step over the rats', { 
+            fontFamily: 'Arial',
+            fontSize: 12,
+            color: '#ffffff'
+        });
+        
+        textObject1.setOrigin(0.5); 
+        textObject2.setOrigin(0.5); 
+        textObject3.setOrigin(0.5); 
 
         // add bunny
         this.bunny = new Bunny(this, bunnySpawn.x, bunnySpawn.y, 'bunny', 0)
@@ -116,7 +141,12 @@ class Level1 extends Phaser.Scene {
             //this.gameOver()
         });
 
-        this.trainer = new Weasel(this, trainerSpawns.x, trainerSpawns.y, 'polarBear', 0)
+        this.trainer = new Weasel(this, trainerSpawns.x, trainerSpawns.y, 'polarbear')
+        this.trainer.body.setSize(64, 175)
+        this.trainer.body.setCollideWorldBounds(true)
+        this.physics.add.collider(this.trainer, terrainLayer)
+        this.physics.add.collider(this.trainer, this.bunny)
+        this.trainer.body.setImmovable(true)
 
 
         //taking input from the user
@@ -129,17 +159,12 @@ class Level1 extends Phaser.Scene {
         this.livesText = this.add.text(10, 10, 'Lives: ' + lives, { fontSize: '16px', fill: '#000000' });
 
         this.input.keyboard.on('keydown', (event) => {
-            if (event.code === 'ArrowLeft') {
+            if (event.code === 'ArrowLeft' || event.code === 'ArrowRight') {
                 this.bunny.play('transition', true);
                 this.bunny.once('animationcomplete', () => {
                     this.bunny.play('run', true);
                 });
-            } else if (event.code === 'ArrowRight') {
-                this.bunny.play('transition', true);
-                this.bunny.once('animationcomplete', () => {
-                    this.bunny.play('run', true);
-                });
-            }
+            } 
         });
 
         this.input.keyboard.on('keyup', (event) => {
@@ -167,7 +192,9 @@ class Level1 extends Phaser.Scene {
 
 
         this.bunny.update();
-        if (this.weasel.body){
+        if (this.trainer.body) {
+            this.trainer.update()
+        } else if (this.weasel.body){
             this.weasel.update();
         }
         this.rats.forEach(rat => {
@@ -176,6 +203,9 @@ class Level1 extends Phaser.Scene {
         this.train.update()
         if (lives <= 0){
             this.gameOver();
+        }
+        if (this.trainer.body) {
+            this.trainer.update()
         }
         this.livesText.setText('Lives: ' + lives);
         this.livesText.x = this.cameras.main.scrollX + 10;
