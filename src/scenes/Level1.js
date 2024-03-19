@@ -88,8 +88,8 @@ class Level1 extends Phaser.Scene {
 
         }
         this.physics.add.overlap(this.bunny, this.rats, () => {
+            this.loseLife()
             //this.gameOver()
-            lives--;
         });
 
         //keys that you can input
@@ -102,7 +102,7 @@ class Level1 extends Phaser.Scene {
         this.weasel.body.setCollideWorldBounds(true);
         this.physics.add.collider(this.weasel, terrainLayer);
         this.physics.add.overlap(this.bunny, this.weasel, () => {
-            lives--;
+            this.loseLife()
             //this.gameOver()
         });
 
@@ -115,7 +115,7 @@ class Level1 extends Phaser.Scene {
         });
 
         this.livesText = this.add.text(10, 10, 'Lives: ' + lives, { fontSize: '24px', fill: '#ffffff' });
-        this.livesText.setScrollFactor(0);
+        //this.livesText.setScrollFactor(0);
 
 
     }
@@ -145,6 +145,31 @@ class Level1 extends Phaser.Scene {
 
         this.scene.start('gameOverScene');
 
+    }
+
+    loseLife(){
+        lives--
+        this.livesText.setColor('#FF0000')
+        this.tweens.add({
+            targets: this.livesText,
+            duration: 200,
+            repeat: 5, 
+            alpha: 0,
+            yoyo: true,
+            onComplete: () => {
+                this.livesText.setColor('#000000');
+                this.livesText.setAlpha(1);
+            }
+        });
+
+
+        this.tweens.add({
+            targets: this.livesText,
+            duration: 50,
+            repeat: 10,
+            x: '+=10', 
+            yoyo: true 
+        });
     }
 
 }
