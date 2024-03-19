@@ -10,6 +10,7 @@ class Level1 extends Phaser.Scene {
 
 
     create() {
+        lives = 3;
         this.sound.play('background', { loop: true })
         
         const map = this.add.tilemap('tilemapJSON')
@@ -87,7 +88,8 @@ class Level1 extends Phaser.Scene {
 
         }
         this.physics.add.overlap(this.bunny, this.rats, () => {
-            this.gameOver()
+            //this.gameOver()
+            lives--;
         });
 
         //keys that you can input
@@ -100,7 +102,8 @@ class Level1 extends Phaser.Scene {
         this.weasel.body.setCollideWorldBounds(true);
         this.physics.add.collider(this.weasel, terrainLayer);
         this.physics.add.overlap(this.bunny, this.weasel, () => {
-            this.gameOver()
+            lives--;
+            //this.gameOver()
         });
 
 
@@ -110,6 +113,9 @@ class Level1 extends Phaser.Scene {
                 inputString += event.key;
             }
         });
+
+        this.livesText = this.add.text(10, 10, 'Lives: ' + lives, { fontSize: '24px', fill: '#ffffff' });
+        this.livesText.setScrollFactor(0);
 
 
     }
@@ -126,6 +132,12 @@ class Level1 extends Phaser.Scene {
             rat.update();
         });
         this.train.update()
+        if (lives <= 0){
+            this.gameOver;
+        }
+        this.livesText.setText('Lives: ' + lives);
+        this.livesText.x = this.cameras.main.scrollX + 10;
+        this.livesText.y = this.cameras.main.scrollY + 10;
         
     }
 
