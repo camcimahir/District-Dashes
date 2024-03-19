@@ -14,6 +14,10 @@ class Menu extends Phaser.Scene {
             frameWidth: 34,
             frameHeight: 46
         })
+        this.load.spritesheet('judyTransition', 'img/stand-to-run.png', {
+            frameWidth: 64,
+            frameHeight: 64
+        })
         //this.load.image('blueHills', 'img/blueHills.png')
 
         this.load.image('ground', 'img/ground.png')
@@ -37,7 +41,7 @@ class Menu extends Phaser.Scene {
     create(){
 
         this.add.bitmapText(centerX, centerY - 32, 'nathanFont', 'DISTRICT DASHES', 24).setOrigin(0.5)
-        this.add.bitmapText(centerX, centerY, 'nathanFont', 'click the right button fr credits and left to play  ', 12).setOrigin(0.5)
+        this.add.bitmapText(centerX, centerY, 'nathanFont', 'click the right button fr credits and left to play  ', 24).setOrigin(0.5)
 
         // Add button
         const buttonLevel1 = this.add.image(centerX - 48, centerY + 64, 'button').setInteractive().setScale(0.05);
@@ -53,11 +57,31 @@ class Menu extends Phaser.Scene {
         // bunny  animation I get a warning saying this is already created look to fix it if time
         this.anims.create({
             key: 'idle',
-            frameRate: 4,
+            frameRate: 3,
             repeat: -1,
             frames: this.anims.generateFrameNumbers( 'judy', {
                 start: 0,
                 end: 5
+            })
+        })
+
+        this.anims.create({
+            key: 'run',
+            frameRate: 7,
+            repeat: -1,
+            frames: this.anims.generateFrameNumbers( 'judyRunning', {
+                start: 0,
+                end: 7
+            })
+        })
+
+        this.anims.create({
+            key: 'transition',
+            frameRate: 4,
+            repeat: 0,
+            frames: this.anims.generateFrameNumbers( 'judyTransition', {
+                start: 0,
+                end: 3
             })
         })
 

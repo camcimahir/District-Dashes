@@ -47,10 +47,15 @@ class Level1 extends Phaser.Scene {
         const trainSpawns = map.findObject('trainSpawns', (obj) => obj.name === 'trainSpawns')
 
         // add bunny
-        this.bunny = new Bunny(this, bunnySpawn.x, bunnySpawn.y, 'judy', 5)
+        this.bunny = new Bunny(this, bunnySpawn.x, bunnySpawn.y, 'idle')
         this.bunny.setSize(100, 100)
-        this.bunny.play('idle')
+        this.bunny.play('run')
         this.bunny.body.setCollideWorldBounds(true)
+        
+        // If the bunny stops moving, play the 'idle' animation
+        if (this.bunny.body.velocity.x === 0 && !this.isJumping) {
+            this.bunny.play('run');
+        }
 
         //fix camera to bunny
         this.cameras.main.setBounds(0,0, map.widthInPixels, map.heightInPixels)
