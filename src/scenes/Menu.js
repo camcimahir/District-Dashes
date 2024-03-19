@@ -18,7 +18,7 @@ class Menu extends Phaser.Scene {
         this.load.tilemapTiledJSON('tilemapJSON', 'tiled/PlatformTest.json')
         this.load.image('button', 'img/button.avif')
         this.load.bitmapFont('gem_font', 'font/gem.png', 'font/gem.xml')
-        this.load.bitmapFont('nathanFont', 'font/nathan.png', 'font/nathan.xml' )
+        this.load.bitmapFont('nathanFont', 'font/nathan-w.png', 'font/nathan-w.xml' )
         this.load.spritesheet('rat2', 'img/rat-two.png', {
             frameWidth: 24,
             frameHeight: 24
