@@ -18,7 +18,10 @@ class Menu extends Phaser.Scene {
         this.load.tilemapTiledJSON('tilemapJSON', 'tiled/PlatformTest.json')
         this.load.image('button', 'img/button.avif')
         this.load.bitmapFont('gem_font', 'font/gem.png', 'font/gem.xml')
-        this.load.image('rat', 'img/rat-version-one.png')
+        this.load.spritesheet('rat2', 'img/rat-two.png', {
+            frameWidth: 24,
+            frameHeight: 24
+        })
         this.load.image('weasel', 'img/weasel.png')
 
         this.load.audio('background', 'sound/background.mp3')
@@ -50,6 +53,16 @@ class Menu extends Phaser.Scene {
             frames: this.anims.generateFrameNumbers( 'judy', {
                 start: 0,
                 end: 5
+            })
+        })
+
+        this.anims.create({
+            key: 'mouse2',
+            frameRate: 7,
+            repeat: -1,
+            frames: this.anims.generateFrameNumbers('rat2', {
+                start: 0, 
+                end: 1
             })
         })
 

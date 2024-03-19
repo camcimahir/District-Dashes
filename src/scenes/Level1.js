@@ -86,6 +86,9 @@ class Level1 extends Phaser.Scene {
 
             this.rats.push(rat)
 
+            rat.play('mouse2')
+ 
+
         }
         this.physics.add.overlap(this.bunny, this.rats, () => {
             this.loseLife()
@@ -114,8 +117,7 @@ class Level1 extends Phaser.Scene {
             }
         });
 
-        this.livesText = this.add.text(10, 10, 'Lives: ' + lives, { fontSize: '24px', fill: '#ffffff' });
-        //this.livesText.setScrollFactor(0);
+        this.livesText = this.add.text(10, 10, 'Lives: ' + lives, { fontSize: '16px', fill: '#000000' });
 
 
     }
@@ -133,7 +135,7 @@ class Level1 extends Phaser.Scene {
         });
         this.train.update()
         if (lives <= 0){
-            this.gameOver;
+            this.gameOver();
         }
         this.livesText.setText('Lives: ' + lives);
         this.livesText.x = this.cameras.main.scrollX + 10;

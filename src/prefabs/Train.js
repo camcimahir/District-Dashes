@@ -6,7 +6,7 @@ class Train extends Phaser.GameObjects.Sprite {
         scene.physics.add.existing(this)
         this.startingX = x;
         //this.direction = 1;
-        this.body.setVelocityX(-200);
+        this.body.setVelocityX(-300);
 
         this.enemySpawn = enemySpawn
 
