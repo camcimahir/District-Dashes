@@ -11,7 +11,6 @@ class Level1 extends Phaser.Scene {
 
     create() {
         lives = 3;
-        this.sound.play('background', { loop: true })
         
         const map = this.add.tilemap('tilemapJSON')
 
@@ -47,15 +46,13 @@ class Level1 extends Phaser.Scene {
         const trainSpawns = map.findObject('trainSpawns', (obj) => obj.name === 'trainSpawns')
 
         // add bunny
-        this.bunny = new Bunny(this, bunnySpawn.x, bunnySpawn.y, 'idle')
-        this.bunny.setSize(100, 100)
-        this.bunny.play('run')
+        this.bunny = new Bunny(this, bunnySpawn.x, bunnySpawn.y, 'bunny', 0)
+        this.bunny.body.setOffset(24, -2)
+        this.bunny.play('idle')
         this.bunny.body.setCollideWorldBounds(true)
-        
-        // If the bunny stops moving, play the 'idle' animation
-        if (this.bunny.body.velocity.x === 0 && !this.isJumping) {
-            this.bunny.play('run');
-        }
+        this.canLoseLife = true
+
+        cursors = this.input.keyboard.createCursorKeys()
 
         //fix camera to bunny
         this.cameras.main.setBounds(0,0, map.widthInPixels, map.heightInPixels)
@@ -83,7 +80,7 @@ class Level1 extends Phaser.Scene {
         const numberOfRats = 8;
         for (let i = 0; i < numberOfRats; i++) {
 
-            const rat = new Rats(this, enemySpawn.x - 150*i, enemySpawn.y, 'rat', 0 , enemySpawn.x ).setScale();
+            const rat = new Rats(this, enemySpawn.x - 150*i, enemySpawn.y, 'rat2', 0 , enemySpawn.x ).setScale();
             
             rat.body.setCollideWorldBounds(true);
             this.physics.add.collider(rat, terrainLayer);
@@ -96,7 +93,7 @@ class Level1 extends Phaser.Scene {
 
         }
         this.physics.add.overlap(this.bunny, this.rats, () => {
-            this.loseLife()
+            this.bunnyLoseHealthCollide()
             //this.gameOver()
         });
 
@@ -110,7 +107,7 @@ class Level1 extends Phaser.Scene {
         this.weasel.body.setCollideWorldBounds(true);
         this.physics.add.collider(this.weasel, terrainLayer);
         this.physics.add.overlap(this.bunny, this.weasel, () => {
-            this.loseLife()
+            this.bunnyLoseHealthCollide()
             //this.gameOver()
         });
 
@@ -124,12 +121,43 @@ class Level1 extends Phaser.Scene {
 
         this.livesText = this.add.text(10, 10, 'Lives: ' + lives, { fontSize: '16px', fill: '#000000' });
 
+        this.input.keyboard.on('keydown', (event) => {
+            if (event.code === 'ArrowLeft') {
+                this.bunny.play('transition', true);
+                this.bunny.once('animationcomplete', () => {
+                    this.bunny.play('run', true);
+                });
+            } else if (event.code === 'ArrowRight') {
+                this.bunny.play('transition', true);
+                this.bunny.once('animationcomplete', () => {
+                    this.bunny.play('run', true);
+                });
+            }
+        });
+
+        this.input.keyboard.on('keyup', (event) => {
+            if (event.code === 'ArrowLeft' || event.code === 'ArrowRight') {
+                this.bunny.play('idle');
+            }
+        });
+
 
     }
 
         
 
     update() {
+
+        // if (cursors.left.isDown) {
+        //     this.bunny.play('transition', true)
+        //     this.bunny.play('run', true)
+        // } else if( cursors.right.isDown) {
+        //     this.bunny.play('run', true)
+        // } else {
+        //     this.bunny.play('idle', true)
+        // }
+
+
 
         this.bunny.update();
         if (this.weasel.body){
@@ -152,6 +180,16 @@ class Level1 extends Phaser.Scene {
 
         this.scene.start('gameOverScene');
 
+    }
+
+    bunnyLoseHealthCollide(){
+        if (this.canLoseLife) {
+            this.loseLife();
+            this.canLoseLife = false; // Set flag to false to prevent further calls to loseLife
+            this.time.delayedCall(2000, () => {
+                this.canLoseLife = true; // Reset flag after 2 seconds
+            }, null, this);
+        }
     }
 
     loseLife(){
@@ -178,5 +216,6 @@ class Level1 extends Phaser.Scene {
             yoyo: true 
         });
     }
+
 
 }

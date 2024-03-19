@@ -6,7 +6,7 @@ class Rats extends Phaser.GameObjects.Sprite {
         scene.physics.add.existing(this)
         this.startingX = x;
         //this.direction = 1;
-        this.body.setVelocityX(-100);
+        this.body.setVelocityX(-80);
 
         this.enemySpawn = enemySpawn
 
@@ -31,7 +31,7 @@ class Rats extends Phaser.GameObjects.Sprite {
         const newX = this.enemySpawn + randomOffsetX;
         
         this.setPosition(newX, this.y);
-        this.body.setVelocityX(-100);
+        this.body.setVelocityX(-80);
     }
 
 

@@ -26,9 +26,9 @@ class Weasel extends Phaser.GameObjects.Sprite {
 
         if (inputString == this.letterCombination){
             this.scene.time.delayedCall(500, () => {
-                this.destroy();
-                this.letterText.destroy();
-                this.guessText.destroy();
+                this.letterText.destroy()
+                this.guessText.destroy()
+                this.destroy()
             });
         }
 
