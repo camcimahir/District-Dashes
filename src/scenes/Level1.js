@@ -18,6 +18,7 @@ class Level1 extends Phaser.Scene {
         const groundTileset = map.addTilesetImage('ground', 'ground')
         const buildingTileset = map.addTilesetImage('objects','buildings')
         const tutorialTileset = map.addTilesetImage('tutorial','tutorial')
+        const stage = map.addTilesetImage('stage', 'finish')
 
         //layers
         const terrainLayer = map.createLayer('platforms', groundTileset, 0, 0)
@@ -27,12 +28,14 @@ class Level1 extends Phaser.Scene {
         this.BridgeLayer = map.createLayer('Bridge', buildingTileset, 0, 0)
         const houseLayer = map.createLayer('houses', buildingTileset, 0, 0)
         const tutorialLayer = map.createLayer('TutorialLayer', tutorialTileset, 0, 0)
+        const finishLayer = map.createLayer('stageLayer', stage, 0, 0)
         
         //layer collissions
         terrainLayer.setCollisionByProperty({collides: true})
         RatCollide.setCollisionByProperty({collides: true})
         DoorLayer.setCollisionByProperty({collides: true})
         tutorialLayer.setCollisionByProperty({collides: true})
+        finishLayer.setCollisionByProperty({collides: true})
 
         this.BridgeLayer.forEachTile(tile => {
             if (tile.properties["OneWay"]) {
@@ -92,6 +95,7 @@ class Level1 extends Phaser.Scene {
         this.physics.add.collider(this.bunny, this.BridgeLayer)
         this.physics.add.collider(this.bunny, DoorLayer)
         this.physics.add.collider(this.bunny, tutorialLayer)
+        this.physics.add.collider(this.bunny, finishLayer)
 
          //train stuff
         this.train = new Train(this, trainSpawns.x, 355, 'train', 0, trainSpawns.x)
@@ -197,6 +201,7 @@ class Level1 extends Phaser.Scene {
         } else if (this.weasel.body){
             this.weasel.update();
         }
+
         this.rats.forEach(rat => {
             rat.update();
         });
