@@ -16,11 +16,11 @@
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 2,
+            "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 1891.75,
-                "y": 448.25
+                "x": 2919.6666666666665,
+                "y": 356.33333333333337
             }
         },
         "PlatformTest.json#grass": {
@@ -34,10 +34,10 @@
             "scaleInDock": 1
         },
         "PlatformTest.json#newGround": {
-            "scaleInDock": 0.5
+            "scaleInDock": 0.75
         },
         "PlatformTest.json#objects": {
-            "scaleInDock": 1
+            "scaleInDock": 2
         },
         "PlatformTest.json#tileset": {
             "scaleInDock": 3,
