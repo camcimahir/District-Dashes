@@ -10,6 +10,15 @@ class Level1 extends Phaser.Scene {
 
 
     create() {
+
+        backgroundMusic = this.sound.add('background', { loop: true });
+        backgroundMusic.setVolume(0.10);
+
+        if (!playing) {
+            backgroundMusic.play()
+            playing = true
+        }
+        
         lives = 5   ;
         
         const map = this.add.tilemap('tilemapJSON')
@@ -98,6 +107,7 @@ class Level1 extends Phaser.Scene {
         this.physics.add.collider(this.bunny, this.finishLayer, () => {
             this.time.delayedCall(3000, () => {
                 backgroundMusic.stop();
+                playing = false
                 this.scene.start('youWinScene');
             });
         })
@@ -236,6 +246,7 @@ class Level1 extends Phaser.Scene {
     gameOver() {
 
         backgroundMusic.stop();
+        playing = false
         this.scene.start('gameOverScene');
 
     }

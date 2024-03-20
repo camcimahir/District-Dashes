@@ -78,13 +78,6 @@ class Menu extends Phaser.Scene {
         // buttonCredits.on('pointerdown', () => {
         //     this.scene.start('creditScene');
         // });
-        backgroundMusic = this.sound.add('background', { loop: true });
-        backgroundMusic.setVolume(0.10);
-
-        if (!playing) {
-            backgroundMusic.play()
-            playing = true
-        }
 
         // const animationCompleteHandler = (animation) => {
         //     if (animation.key === 'transition') {
