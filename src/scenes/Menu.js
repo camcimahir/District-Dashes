@@ -38,27 +38,50 @@ class Menu extends Phaser.Scene {
         this.load.image('bunny', 'img/menu-scene-character.png' )
         this.load.audio('background', 'sound/background.mp3')
         this.load.audio('weasel-lose', 'sound/weasel-lose-darn.mp3')
+        this.load.image('menu', 'img/menu.png')
+        this.load.audio('blood', 'sound/blood.mp3' )
     }
 
 
     create(){
 
-        this.add.bitmapText(centerX, centerY - 32, 'nathanFont', 'DISTRICT DASHES', 24).setOrigin(0.5)
-        this.add.bitmapText(centerX, centerY, 'nathanFont', 'click the right button fr credits and left to play  ', 24).setOrigin(0.5)
+        const menuBackground = this.add.image(0, 0, 'menu').setScale(2)
+        menuBackground.setPosition(this.cameras.main.width / 2, this.cameras.main.height / 2);
+
+
+        // this.add.bitmapText(centerX, centerY - 32, 'nathanFont', 'DISTRICT DASHES', 24).setOrigin(0.5)
+        // this.add.bitmapText(centerX, centerY, 'nathanFont', 'click the right button fr credits and left to play  ', 24).setOrigin(0.5)
 
         // Add button
-        const buttonLevel1 = this.add.image(centerX - 48, centerY + 64, 'button').setInteractive().setScale(0.05);
-        buttonLevel1.on('pointerdown', () => {
+
+        const button1 = this.add.rectangle(90, 190, 130, 40, 0xFF0000, 0).setOrigin(0);
+        const button2 = this.add.rectangle(230, 190, 130, 40, 0xFF0000, 0).setOrigin(0);
+    
+        button1.setInteractive();
+        button2.setInteractive();
+    
+        button1.on('pointerdown', () => {
             this.scene.start('Level1');
         });
-
-        const buttonCredits = this.add.image(centerX + 48, centerY + 64, 'button').setInteractive().setScale(0.05);
-        buttonCredits.on('pointerdown', () => {
+    
+        button2.on('pointerdown', () => {
             this.scene.start('creditScene');
         });
 
+        // const buttonLevel1 = this.add.image(centerX - 48, centerY + 64, 'button').setInteractive().setScale(0.05);
+        // buttonLevel1.on('pointerdown', () => {
+        //     this.scene.start('Level1');
+        // });
+
+        // const buttonCredits = this.add.image(centerX + 48, centerY + 64, 'button').setInteractive().setScale(0.05);
+        // buttonCredits.on('pointerdown', () => {
+        //     this.scene.start('creditScene');
+        // });
+        this.backgroundMusic = this.sound.add('background', { loop: true });
+        this.backgroundMusic.setVolume(0.10);
+
         if (!playing) {
-            this.sound.add('background', { loop: true }).play()
+            this.backgroundMusic.play()
             playing = true
         }
 

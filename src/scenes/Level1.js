@@ -10,7 +10,7 @@ class Level1 extends Phaser.Scene {
 
 
     create() {
-        lives = 3;
+        lives = 5;
         
         const map = this.add.tilemap('tilemapJSON')
 
@@ -28,14 +28,14 @@ class Level1 extends Phaser.Scene {
         this.BridgeLayer = map.createLayer('Bridge', buildingTileset, 0, 0)
         const houseLayer = map.createLayer('houses', buildingTileset, 0, 0)
         const tutorialLayer = map.createLayer('TutorialLayer', tutorialTileset, 0, 0)
-        const finishLayer = map.createLayer('stageLayer', stage, 0, 0)
+        this.finishLayer = map.createLayer('stageLayer', stage, 0, 0)
         
         //layer collissions
         terrainLayer.setCollisionByProperty({collides: true})
         RatCollide.setCollisionByProperty({collides: true})
         DoorLayer.setCollisionByProperty({collides: true})
         tutorialLayer.setCollisionByProperty({collides: true})
-        finishLayer.setCollisionByProperty({collides: true})
+        this.finishLayer.setCollisionByProperty({collides: true})
 
         this.BridgeLayer.forEachTile(tile => {
             if (tile.properties["OneWay"]) {
@@ -95,7 +95,11 @@ class Level1 extends Phaser.Scene {
         this.physics.add.collider(this.bunny, this.BridgeLayer)
         this.physics.add.collider(this.bunny, DoorLayer)
         this.physics.add.collider(this.bunny, tutorialLayer)
-        this.physics.add.collider(this.bunny, finishLayer)
+        this.physics.add.collider(this.bunny, this.finishLayer, () => {
+            this.time.delayedCall(3000, () => {
+            this.scene.start('youWinScene');
+            });
+        })
 
          //train stuff
         this.train = new Train(this, trainSpawns.x, 355, 'train', 0, trainSpawns.x)
@@ -191,6 +195,16 @@ class Level1 extends Phaser.Scene {
         //     this.bunny.play('run', true)
         // } else {
         //     this.bunny.play('idle', true)
+        // }
+
+        // if (this.physics.overlap(this.bunny, this.finishLayer)) {
+        //     // Set a delayed call to transition to the "you win" scene after 5 seconds
+        //     if (!this.transitioning) {
+        //         this.transitioning = true; // Set flag to prevent multiple calls
+        //         this.time.delayedCall(5000, () => {
+        //             this.scene.start('youWinScene');
+        //         });
+        //     }
         // }
 
 
