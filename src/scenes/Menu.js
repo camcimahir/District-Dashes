@@ -20,7 +20,7 @@ class Menu extends Phaser.Scene {
         // })
         //this.load.image('blueHills', 'img/blueHills.png')
 
-        this.load.image('ground', 'img/ground.png')
+        this.load.image('ground', 'img/ground-tileset.png')
         this.load.image('train', 'img/scene-one-train.png')
         this.load.image('buildings', 'img/scene-one-tileset.png')
         this.load.image('tutorial', 'img/tutorial.png')

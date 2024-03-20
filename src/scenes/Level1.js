@@ -15,7 +15,7 @@ class Level1 extends Phaser.Scene {
         const map = this.add.tilemap('tilemapJSON')
 
         //tilesets
-        const groundTileset = map.addTilesetImage('ground', 'ground')
+        const groundTileset = map.addTilesetImage('newGround', 'ground')
         const buildingTileset = map.addTilesetImage('objects','buildings')
         const tutorialTileset = map.addTilesetImage('tutorial','tutorial')
         const stage = map.addTilesetImage('stage', 'finish')
