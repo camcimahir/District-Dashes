@@ -15,7 +15,7 @@ class Credits extends Phaser.Scene {
     create(){
 
     // Add credits text
-    this.add.bitmapText(centerX - 170, centerY - 110, 'bricksFont', 'Programming: Mahir Camci & Evenly Fu', 18).setOrigin(0);
+    this.add.bitmapText(centerX - 170, centerY - 110, 'bricksFont', 'Programming: Mahir Camci & Evelyn Fu', 18).setOrigin(0);
     this.add.bitmapText(centerX - 170, centerY - 80, 'bricksFont', 'Art: Evelyn Fu', 18).setOrigin(0);
     this.add.bitmapText(centerX - 170, centerY - 48, 'bricksFont', 'Font: TT Bricks by TypeType Foundry', 18).setOrigin(0);
     this.add.bitmapText(centerX - 170, centerY - 16, 'bricksFont', 'BGM: Felicity by Scott Buckley', 18).setOrigin(0);
