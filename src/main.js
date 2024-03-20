@@ -15,7 +15,7 @@ let config = {
     physics: {
         default: "arcade",
         arcade: {
-            debug: true
+            debug: false
         }
     },
     zoom: 2.5,
@@ -24,7 +24,7 @@ let config = {
 
 const game = new Phaser.Game(config)
 
-let cursors, menuConfig, inputString, inputKeys, collider1, playing, lives
+let cursors, menuConfig, inputString, inputKeys, collider1, playing, lives, backgroundMusic
 
 let borderUISize = game.config.height / 15
 let borderPadding = borderUISize / 3

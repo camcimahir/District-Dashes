@@ -19,7 +19,7 @@ class YouWin extends Phaser.Scene {
     const FinishBackground = this.add.image(0, 0, 'finishScene').setScale()
     FinishBackground.setPosition(this.cameras.main.width / 2, this.cameras.main.height / 2);
     // Add credits text
-    //this.add.bitmapText(centerX - 70, centerY, 'nathanFont', 'You Win', 50).setOrigin(0);
+    this.add.bitmapText(centerX - 70, centerY - 30, 'bricksFont', 'You Win', 50).setOrigin(0);
     // this.add.bitmapText(centerX - 170, centerY - 80, 'nathanFont', 'Art: Evelyn Fu', 20).setOrigin(0);
     // this.add.bitmapText(centerX - 170, centerY - 48, 'nathanFont', 'Font: Peter Wiegel', 20).setOrigin(0);
     // this.add.bitmapText(centerX - 170, centerY - 16, 'nathanFont', 'BGM: Felicity by Scott Buckley', 20).setOrigin(0);

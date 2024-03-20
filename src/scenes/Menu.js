@@ -30,6 +30,7 @@ class Menu extends Phaser.Scene {
         this.load.image('button', 'img/button.avif')
         this.load.bitmapFont('gem_font', 'font/gem.png', 'font/gem.xml')
         this.load.bitmapFont('nathanFont', 'font/nathan-w.png', 'font/nathan-w.xml' )
+        this.load.bitmapFont('bricksFont', 'font/TTBricks-W.png', 'font/TTBricks-W.xml' )
         this.load.spritesheet('rat2', 'img/rat.png', {
             frameWidth: 16,
             frameHeight: 18
@@ -77,11 +78,11 @@ class Menu extends Phaser.Scene {
         // buttonCredits.on('pointerdown', () => {
         //     this.scene.start('creditScene');
         // });
-        this.backgroundMusic = this.sound.add('background', { loop: true });
-        this.backgroundMusic.setVolume(0.10);
+        backgroundMusic = this.sound.add('background', { loop: true });
+        backgroundMusic.setVolume(0.10);
 
         if (!playing) {
-            this.backgroundMusic.play()
+            backgroundMusic.play()
             playing = true
         }
 

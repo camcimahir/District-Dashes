@@ -15,15 +15,15 @@ class Credits extends Phaser.Scene {
     create(){
 
     // Add credits text
-    this.add.bitmapText(centerX - 170, centerY - 110, 'nathanFont', 'Programming: Mahir Camci & Evenly Fu', 20).setOrigin(0);
-    this.add.bitmapText(centerX - 170, centerY - 80, 'nathanFont', 'Art: Evelyn Fu', 20).setOrigin(0);
-    this.add.bitmapText(centerX - 170, centerY - 48, 'nathanFont', 'Font: Peter Wiegel', 20).setOrigin(0);
-    this.add.bitmapText(centerX - 170, centerY - 16, 'nathanFont', 'BGM: Felicity by Scott Buckley', 20).setOrigin(0);
+    this.add.bitmapText(centerX - 170, centerY - 110, 'bricksFont', 'Programming: Mahir Camci & Evenly Fu', 18).setOrigin(0);
+    this.add.bitmapText(centerX - 170, centerY - 80, 'bricksFont', 'Art: Evelyn Fu', 18).setOrigin(0);
+    this.add.bitmapText(centerX - 170, centerY - 48, 'bricksFont', 'Font: TT Bricks by TypeType Foundry', 18).setOrigin(0);
+    this.add.bitmapText(centerX - 170, centerY - 16, 'bricksFont', 'BGM: Felicity by Scott Buckley', 18).setOrigin(0);
 
     // Add controls text
-    this.add.bitmapText(centerX - 170, centerY + 16, 'nathanFont', 'Controls:', 18).setOrigin(0);
-    this.add.bitmapText(centerX - 170, centerY + 48, 'nathanFont', 'Use arrow keys to move', 18).setOrigin(0);
-    this.add.bitmapText(centerX - 170, centerY + 80, 'nathanFont', 'Use the keyboard to type the code', 18).setOrigin(0);
+    this.add.bitmapText(centerX - 170, centerY + 16, 'bricksFont', 'Controls:', 16).setOrigin(0);
+    this.add.bitmapText(centerX - 170, centerY + 48, 'bricksFont', 'Use arrow keys to move', 16).setOrigin(0);
+    this.add.bitmapText(centerX - 170, centerY + 80, 'bricksFont', 'Use the keyboard to type the code', 16  ).setOrigin(0);
 
 
 

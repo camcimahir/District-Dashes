@@ -10,7 +10,7 @@ class Level1 extends Phaser.Scene {
 
 
     create() {
-        lives = 5;
+        lives = 5   ;
         
         const map = this.add.tilemap('tilemapJSON')
 
@@ -97,7 +97,8 @@ class Level1 extends Phaser.Scene {
         this.physics.add.collider(this.bunny, tutorialLayer)
         this.physics.add.collider(this.bunny, this.finishLayer, () => {
             this.time.delayedCall(3000, () => {
-            this.scene.start('youWinScene');
+                backgroundMusic.stop();
+                this.scene.start('youWinScene');
             });
         })
 
@@ -234,6 +235,7 @@ class Level1 extends Phaser.Scene {
 
     gameOver() {
 
+        backgroundMusic.stop();
         this.scene.start('gameOverScene');
 
     }
